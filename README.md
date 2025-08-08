@@ -117,7 +117,7 @@ override the SSM-resolved values. To avoid this:
 
 - Use `.env.with-ssm` instead of `.env` for SSM references
 - Or use environment variable substitution if your app supports it:
-  `${API_KEY:-SSM:/myapp/api-key}`
+  `API_KEY=${API_KEY:-SSM:/myapp/api-key}`
 
 ### 🚀 Deployment Considerations
 
