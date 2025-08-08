@@ -6,8 +6,8 @@
   "license": "GPL-3.0",
   "scripts": {
     "test:lint": "eslint",
-    "build": "tsc --build",
-    "build:dev": "tsc --build --watch",
+    "build": "ncc build src/start.ts -o dist",
+    "build:dev": "ncc build src/start.ts -o dist --watch",
     "test:unit": "vitest --run --passWithNoTests",
     "test": "pnpm run \"/^test:/\""
   },
@@ -21,6 +21,7 @@
     "@pnpm/find-workspace-packages": "6.0.9",
     "@types/node": "24.2.0",
     "@types/yargs": "^17.0.33",
+    "@vercel/ncc": "^0.38.3",
     "@vitest/coverage-v8": "3.2.4",
     "eslint": "9.32.0",
     "eslint-config-prettier": "10.1.8",
@@ -29,14 +30,12 @@
     "prettier": "3.6.2",
     "typescript": "5.9.2",
     "typescript-eslint": "8.39.0",
-    "vitest": "3.2.4"
-  },
-  "name": "@morten-olsen/with-ssm",
-  "version": "1.0.0",
-  "dependencies": {
+    "vitest": "3.2.4",
     "@aws-sdk/client-ssm": "^3.859.0",
     "dotenv": "^17.2.1",
     "execa": "^9.6.0",
     "yargs": "^18.0.0"
-  }
+  },
+  "name": "@morten-olsen/with-ssm",
+  "version": "1.0.0"
 }

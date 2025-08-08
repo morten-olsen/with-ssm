@@ -36,6 +36,9 @@ importers:
       '@types/yargs':
         specifier: ^17.0.33
         version: 17.0.33
+      '@vercel/ncc':
+        specifier: ^0.38.3
+        version: 0.38.3
       '@vitest/coverage-v8':
         specifier: 3.2.4
         version: 3.2.4(vitest@3.2.4(@types/node@24.2.0))
@@ -974,6 +977,10 @@ packages:
   '@typescript-eslint/visitor-keys@8.39.0':
     resolution: {integrity: sha512-ldgiJ+VAhQCfIjeOgu8Kj5nSxds0ktPOSO9p4+0VDH2R2pLvQraaM5Oen2d7NxzMCm+Sn/vJT+mv2H5u6b/3fA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@vercel/ncc@0.38.3':
+    resolution: {integrity: sha512-rnK6hJBS6mwc+Bkab+PGPs9OiS0i/3kdTO+CkI8V0/VrW3vmz7O2Pxjw/owOlmo6PKEIxRSeZKv/kuL9itnpYA==}
+    hasBin: true
 
   '@vitest/coverage-v8@3.2.4':
     resolution: {integrity: sha512-EyF9SXU6kS5Ku/U82E259WSnvg6c8KTjppUncuNdm5QHpe17mwREHnjDzozC8x9MZ0xfBUFSaLkRv4TMA75ALQ==}
@@ -3915,6 +3922,8 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.39.0
       eslint-visitor-keys: 4.2.1
+
+  '@vercel/ncc@0.38.3': {}
 
   '@vitest/coverage-v8@3.2.4(vitest@3.2.4(@types/node@24.2.0))':
     dependencies:
