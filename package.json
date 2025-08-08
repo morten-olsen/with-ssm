@@ -3,6 +3,7 @@
   "bin": {
     "with-ssm": "./bin/bin.js"
   },
+  "license": "GPL-3.0",
   "scripts": {
     "test:lint": "eslint",
     "build": "tsc --build",

@@ -80,13 +80,6 @@ with-ssm --file .env.production --file .env.secrets -- npm start
 with-ssm --profile production --region us-west-2 -- npm start
 ```
 
-### Debug Mode
-
-```bash
-# See what's happening under the hood
-with-ssm --debug -- npm whoami
-```
-
 ## Command Line Options
 
 | Option      | Alias | Description                 | Default                     |
@@ -94,7 +87,6 @@ with-ssm --debug -- npm whoami
 | `--file`    | `-f`  | Environment file(s) to load | `['.env', '.env.with-ssm']` |
 | `--region`  |       | AWS region for SSM          | AWS SDK default             |
 | `--profile` |       | AWS profile to use          | AWS SDK default             |
-| `--debug`   |       | Enable debug output         | `false`                     |
 | `--help`    | `-h`  | Show help                   |                             |
 
 ## SSM Parameter Format
@@ -113,14 +105,8 @@ out of the box.
 
 ## File Loading Priority
 
-`with-ssm` loads environment variables in this order:
-
-1. Current process environment
-2. `.env` file (if it exists)
-3. `.env.with-ssm` file (if it exists)
-4. Any additional files specified with `--file`
-
-Later files override earlier ones, just like you'd expect.
+`with-ssm` loads environment variables from files in provided order with later
+files override earlier ones, just like you'd expect.
 
 ## Important Notes
 
@@ -135,7 +121,8 @@ override the SSM-resolved values. To avoid this:
 
 ### 🚀 Deployment Considerations
 
-- Don't deploy `.env` files with your application if they contain SSM references
+- Don't deploy `.env` files with your application if they contain SSM
+  references, and you have not added SSM resolution using `with-ssm`
 - Consider using native AWS parameter resolution in production environments
 - The tool requires AWS credentials configured (via AWS CLI, IAM roles, or
   environment variables)
