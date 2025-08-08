@@ -48,6 +48,7 @@ jobs:
           name: lib
           retention-days: 5
           path: |
+            dist/
             packages/*/dist 
             extensions/*/dist 
             server/*/dist 
