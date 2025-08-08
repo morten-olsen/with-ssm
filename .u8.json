@@ -1,0 +1,25 @@
+{
+  "values": {
+    "monoRepo": false,
+    "packageVersion": "1.0.0"
+  },
+  "entries": [
+    {
+      "timestamp": "2025-08-06T15:11:41.427Z",
+      "template": "pkg",
+      "values": {
+        "monoRepo": false,
+        "packageName": "@0north/with-ssm",
+        "packageVersion": "1.0.0"
+      }
+    },
+    {
+      "timestamp": "2025-08-08T06:59:01.701Z",
+      "template": "eslint",
+      "values": {
+        "monoRepo": false,
+        "packageVersion": "1.0.0"
+      }
+    }
+  ]
+}
