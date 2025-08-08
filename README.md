@@ -25,7 +25,7 @@ that get resolved at runtime.
 ## Installation
 
 ```bash
-npm install -g @0north/with-ssm
+npm install -g @0morten-olsen/with-ssm
 ```
 
 ## Quick Start
