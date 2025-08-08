@@ -25,7 +25,7 @@ that get resolved at runtime.
 ## Installation
 
 ```bash
-npm install -g @0morten-olsen/with-ssm
+npm install -g @morten-olsen/with-ssm
 ```
 
 ## Quick Start
@@ -173,3 +173,50 @@ with-ssm -- docker-compose up
 # Deploy with production secrets
 with-ssm --profile production -- npm run deploy
 ```
+
+## How does `with-ssm` compare to...?
+
+`with-ssm`'s philosophy is to be a lightweight utility that enhances your
+existing workflow, not a heavy framework that replaces it. Here’s how it
+compares to other tools.
+
+### vs. `.env` files & `dotenv`
+
+`with-ssm` is a security upgrade for the `dotenv` pattern. Instead of storing
+secrets in plaintext `.env` files, you store secure `SSM:` references that are
+safe to commit to version control. Your app gets the secrets it needs at
+runtime, but they never live on your disk, giving you the same simple developer
+experience with a major security boost.
+
+### vs. `aws-vault`
+
+These tools are complementary and solve different problems. `aws-vault` securely
+manages your local AWS _credentials_, while `with-ssm` uses those credentials to
+fetch and inject application _secrets_. They work perfectly together—use
+`aws-vault` to handle authentication and `with-ssm` to handle secret resolution:
+`aws-vault exec my-profile -- with-ssm -- npm start`.
+
+### vs. `chamber`
+
+`chamber` is a more powerful CLI for the full lifecycle of secret management
+(reading, writing, listing), while `with-ssm` is a lightweight utility focused
+only on resolving secret references from a file. Choose `with-ssm` for its
+"drop-in" simplicity and zero-config approach to enhance an existing `.env`
+workflow; choose `chamber` if you need a more comprehensive command-line tool
+for advanced SSM tasks.
+
+### vs. Cloud-Native Integrations (ECS, Lambda)
+
+`with-ssm` is built for **local development and CI/CD**, allowing your local
+environment to securely mirror production. When your code is running _inside_ an
+AWS environment like ECS or Lambda, you should always use the native best
+practice: grant the service an IAM role to fetch secrets directly via the AWS
+SDK.
+
+### vs. Full Secret Management Platforms (HashiCorp Vault, Doppler)
+
+Platforms like Vault or Doppler are comprehensive, often multi-cloud solutions
+with their own UIs and infrastructure. `with-ssm` is a focused, AWS-native
+utility, not a platform. It's the ideal choice for teams already using AWS who
+want a simple, direct way to leverage SSM Parameter Store without the
+operational overhead of a separate service.
