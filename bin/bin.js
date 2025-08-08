@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-import '../dist/start.js'
+import '../dist/start.js';
