@@ -186,9 +186,3 @@ with-ssm -- docker-compose up
 # Deploy with production secrets
 with-ssm --profile production -- npm run deploy
 ```
-
----
-
-**Pro tip:** Create a `.env.with-ssm` file for your SSM references and keep your
-regular `.env` file for non-sensitive local overrides. This gives you the best
-of both worlds! 🎉

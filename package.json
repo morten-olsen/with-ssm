@@ -30,7 +30,7 @@
     "typescript-eslint": "8.39.0",
     "vitest": "3.2.4"
   },
-  "name": "@0north/with-ssm",
+  "name": "@morten-olsen/with-ssm",
   "version": "1.0.0",
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.859.0",
