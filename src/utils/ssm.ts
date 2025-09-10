@@ -1,4 +1,4 @@
-import { GetParametersCommand, SSMClient } from '@aws-sdk/client-ssm';
+import { GetParametersCommand, SSMClient, type Parameter } from '@aws-sdk/client-ssm';
 
 import { debug } from './debug.js';
 
@@ -30,18 +30,42 @@ const replaceParams = async (
     return env;
   }
 
-  const command = new GetParametersCommand({
-    Names: names,
-    WithDecryption: true,
-  });
+  // Chunk names into groups of 10 (AWS SSM GetParametersCommand limit)
+  const chunks: string[][] = [];
+  debug(`Chunking ${names.length} names into groups of 10`);
+  for (let i = 0; i < names.length; i += 10) {
+    chunks.push(names.slice(i, i + 10));
+  }
 
-  const response = await ssm.send(command);
-  if (response.InvalidParameters?.length || 0 > 0) {
-    console.error('Invalid SSM parameters', response.InvalidParameters);
+  debug(`Processing ${chunks.length} chunks`);
+
+  // Fetch parameters in chunks and combine results
+  const allParams: Parameter[] = [];
+  const allInvalidParams: string[] = [];
+
+  for (const chunk of chunks) {
+    const command = new GetParametersCommand({
+      Names: chunk,
+      WithDecryption: true,
+    });
+
+    const response = await ssm.send(command);
+
+    if (response.Parameters) {
+      allParams.push(...response.Parameters);
+    }
+
+    if (response.InvalidParameters) {
+      allInvalidParams.push(...response.InvalidParameters);
+    }
+  }
+
+  if (allInvalidParams.length > 0) {
+    console.error('Invalid SSM parameters', allInvalidParams);
     process.exit(1);
   }
 
-  const params = response.Parameters ?? [];
+  const params = allParams;
 
   return Object.fromEntries(
     Object.entries(env).map(([key, value]) => {
