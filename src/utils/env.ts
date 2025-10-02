@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-import { parse } from 'dotenv';
+import { parse } from '@dotenvx/dotenvx';
 
 import { debug } from './debug.js';
 
