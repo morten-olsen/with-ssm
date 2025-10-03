@@ -1,6 +1,7 @@
 import { GetParametersCommand, SSMClient, type Parameter } from '@aws-sdk/client-ssm';
 
 import { debug } from './debug.js';
+import { ensureAWS } from './aws.js';
 
 const PREFIX = 'SSM:';
 
@@ -13,11 +14,6 @@ const replaceParams = async (
   env: Record<string, string | undefined>,
   { region, profile }: ReplaceParamsOptions = {},
 ) => {
-  const ssm = new SSMClient({
-    region,
-    profile,
-  });
-
   const names = Object.entries(env)
     .filter(([, value]) => value?.startsWith(PREFIX))
     .map(([, value]) => value?.slice(PREFIX.length))
@@ -30,6 +26,11 @@ const replaceParams = async (
     return env;
   }
 
+  await ensureAWS(region, profile);
+  const ssm = new SSMClient({
+    region,
+    profile,
+  });
   // Chunk names into groups of 10 (AWS SSM GetParametersCommand limit)
   const chunks: string[][] = [];
   debug(`Chunking ${names.length} names into groups of 10`);

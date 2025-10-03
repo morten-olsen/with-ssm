@@ -6,38 +6,37 @@
   "license": "GPL-3.0",
   "scripts": {
     "test:lint": "eslint",
-    "build": "ncc build src/start.ts -o dist",
-    "build:dev": "ncc build src/start.ts -o dist --watch",
+    "build": "ncc build src/start.ts -s -o dist",
+    "build:dev": "ncc build src/start.ts -s -o dist --watch",
     "test:unit": "vitest --run --passWithNoTests",
     "test": "pnpm run \"/^test:/\""
   },
-  "packageManager": "pnpm@10.6.0",
+  "packageManager": "pnpm@10.17.0",
   "files": [
     "dist"
   ],
   "devDependencies": {
-    "@aws-sdk/client-ssm": "^3.863.0",
+    "@aws-sdk/client-ssm": "^3.901.0",
+    "@aws-sdk/client-sts": "^3.901.0",
+    "@dotenvx/dotenvx": "^1.51.0",
     "@eslint/eslintrc": "3.3.1",
-    "@eslint/js": "9.32.0",
+    "@eslint/js": "9.36.0",
     "@pnpm/find-workspace-packages": "6.0.9",
-    "@types/node": "24.2.0",
+    "@types/node": "24.6.2",
     "@types/yargs": "^17.0.33",
-    "@vercel/ncc": "^0.38.3",
+    "@vercel/ncc": "^0.38.4",
     "@vitest/coverage-v8": "3.2.4",
-    "eslint": "9.32.0",
+    "eslint": "9.36.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-prettier": "5.5.4",
     "execa": "^9.6.0",
     "prettier": "3.6.2",
-    "typescript": "5.9.2",
-    "typescript-eslint": "8.39.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.45.0",
     "vitest": "3.2.4",
     "yargs": "^18.0.0"
   },
   "name": "@morten-olsen/with-ssm",
-  "version": "1.0.0",
-  "dependencies": {
-    "@dotenvx/dotenvx": "^1.51.0"
-  }
+  "version": "1.0.0"
 }
