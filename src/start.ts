@@ -19,7 +19,7 @@ const argv = await yargs(hideBin(process.argv))
     alias: 'f',
     type: 'string',
     description: 'The file to use for environment variables. (multiple files can be specified)',
-    default: ['.env', '.env.with-ssm'],
+    default: ['.env.with-ssm', '.env'],
   })
   .demandCommand(1, 'Error: You must provide a command to execute after --')
   .alias('h', 'help')
@@ -36,7 +36,10 @@ if (!command) {
 
 const files = argv.file && Array.isArray(argv.file) ? argv.file : [argv.file];
 const hostEnv = await getEnv(files);
-const env = await replaceParams(hostEnv);
+const env = await replaceParams(hostEnv, {
+  region: argv.region,
+  profile: argv.profile,
+});
 
 exec({
   command,
