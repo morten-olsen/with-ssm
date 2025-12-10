@@ -12,13 +12,13 @@ on:
 env:
   environment: test
   release_channel: latest
-  DO_NOT_TRACK: '1'
-  NODE_VERSION: '23.x'
-  NODE_REGISTRY: 'https://registry.npmjs.org'
+  DO_NOT_TRACK: "1"
+  NODE_VERSION: "23.x"
+  NODE_REGISTRY: "https://registry.npmjs.org"
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   DOCKER_REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  PNPM_VERSION: 10.6.0
+  PNPM_VERSION: 10.17.0
 
 permissions:
   contents: write
@@ -56,8 +56,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '${{ env.NODE_VERSION }}'
-          registry-url: '${{ env.NODE_REGISTRY }}'
+          node-version: "${{ env.NODE_VERSION }}"
+          registry-url: "${{ env.NODE_REGISTRY }}"
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm
@@ -83,3 +83,4 @@ jobs:
           pnpm publish -r --no-git-checks --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
